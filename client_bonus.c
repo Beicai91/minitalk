@@ -45,6 +45,9 @@ void    communicate_pid(pid_t client_pid, pid_t server_pid)
 
 void    handle_signal(int sig, siginfo_t *siginfo, void *context)
 {
+    (void)sig;
+    (void)siginfo;
+    (void)context;
     ft_printf_basic("Message sent successfully.");
     exit(0);
 }

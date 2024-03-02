@@ -16,7 +16,6 @@ int  check_null(int *array)
 
 int check_bytes(t_list *temp)
 {
-    int bytes;
     int count;
     int i;
 

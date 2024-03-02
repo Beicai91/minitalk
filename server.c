@@ -18,6 +18,8 @@ void    handle_signal(int sig, siginfo_t *siginfo, void *context)
     static int  c = 0;
     static int  counter = 7;
 
+    (void)siginfo;
+    (void)context;
     if (sig == SIGUSR2)
         c = c | add_num(counter);
     counter--;
