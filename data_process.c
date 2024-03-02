@@ -21,7 +21,7 @@ void process_bytes(t_list *binary_data, int bytes_total)
     str = (char *)malloc(sizeof(char) * bytes_total);
     if (!str)
         exit(1);
-    get_str(&str, binary_data);
+    get_str(str, binary_data);
     start = send_to_client(str) + 1;
     ft_printf_basic("%s\n", &str[start]);
     free(str);

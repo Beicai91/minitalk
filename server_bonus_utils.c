@@ -70,7 +70,7 @@ int  send_to_client(char *str)
     return (i);
 }
 
-void get_str(char **str, t_list *binary_data)
+void get_str(char *str, t_list *binary_data)
 {
     t_list  *temp;
     int bytes;
@@ -81,13 +81,13 @@ void get_str(char **str, t_list *binary_data)
     while (temp != NULL)
     {
         bytes = check_bytes(temp);
-        (*str)[i++] = get_c(temp);
+        str[i++] = get_c(temp);
         if (bytes != 1)
         {
             while (bytes - 1 > 0)
             {
                 temp = temp->next;
-                (*str)[i++] = get_c(temp);
+                str[i++] = get_c(temp);
                 bytes--;
             }
         }

@@ -21,7 +21,7 @@ void process_bytes(t_list *binary_data, int bytes_total);
 void free_lst(t_list *binary_data);
 
 //server_utils
-void get_str(char **str, t_list *binary_data);
+void get_str(char *str, t_list *binary_data);
 int  send_to_client(char *str);
 int get_c(t_list *temp);
 int check_bytes(t_list *temp);
