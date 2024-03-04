@@ -49,26 +49,6 @@ int get_c(t_list *temp)
     return (c);
 }
 
-int  send_to_client(char *str)
-{
-    int i;
-    int j;
-    char    *pid_str;
-
-    i = 0;
-    while (str[i] != '\n')
-        i++;
-    pid_str = malloc(sizeof(char) * (i + 1));
-    if (!pid_str)
-        exit(1);
-    j = -1;
-    while (str[++j] != '\n')
-        pid_str[j] = str[j];
-    pid_str[j] = '\0';
-    kill(ft_atoi(pid_str), SIGUSR1);
-    free(pid_str);
-    return (i);
-}
 
 void get_str(char *str, t_list *binary_data)
 {

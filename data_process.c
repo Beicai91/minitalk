@@ -1,29 +1,15 @@
 #include "minitalk_bonus.h"
 
-void free_lst(t_list *binary_data)
-{
-    t_list  *temp;
-
-    while (binary_data != NULL)
-    {
-        temp = binary_data;
-        binary_data = binary_data->next;
-        free(temp->content);
-        free(temp);
-    }
-}
-
 void process_bytes(t_list *binary_data, int bytes_total)
 {
     char *str;
-    int start;
 
+    (void)binary_data;
     str = (char *)malloc(sizeof(char) * bytes_total);
     if (!str)
         exit(1);
     get_str(str, binary_data);
-    start = send_to_client(str) + 1;
-    ft_printf_basic("%s\n", &str[start]);
+    ft_printf_basic("%s\n", str);
     free(str);
 }
 
@@ -39,6 +25,8 @@ void process_data(t_list *binary_data)
         bytes_total++;
         temp = temp->next;
     }
+    //test
+    ft_printf_basic("total bytes received %d\n", bytes_total);
+    //
     process_bytes(binary_data, bytes_total);
-    free_lst(binary_data);
 }

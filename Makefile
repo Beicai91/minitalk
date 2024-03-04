@@ -3,7 +3,7 @@ NAME_S = server
 NAME_CB = client_bonus
 NAME_SB = server_bonus
 CC = cc
-CFLAGS = -Wextra -Werror -Wall -fsanitize=address
+CFLAGS = -Wextra -Werror -Wall
 LIBFT_PATH = ./libft
 LIBFT = ./libft/libft.a
 
