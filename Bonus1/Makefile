@@ -11,9 +11,7 @@ SRCS_C = client.c
 SRCS_S = server.c 
 
 SRCS_CB = client_bonus.c 
-SRCS_SB = data_process.c \
-		  server_bonus_utils.c \
-		  server_bonus.c
+SRCS_SB = server_bonus.c
 
 OBJS_C = ${SRCS_C:.c=.o}
 OBJS_S = ${SRCS_S:.c=.o}

@@ -10,42 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#ifndef MINITALK_BONUS_H
+# define MINITALK_BONUS_H
 
-void	send_to_server(pid_t server_pid, char c)
-{
-	int	i;
+# include "libft/libft.h"
+# include <signal.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <sys/types.h>
+# include <unistd.h>
 
-	i = 7;
-	while (i >= 0)
-	{
-		if ((c >> i & 1) == 0)
-			kill(server_pid, SIGUSR1);
-		else if ((c >> i & 1) == 1)
-			kill(server_pid, SIGUSR2);
-		usleep(100);
-		i--;
-	}
-}
+// server
+void	handle_signal(int sig, siginfo_t *siginfo, void *context);
+int		add_num(int i);
 
-int	main(int argc, char *argv[])
-{
-	pid_t	server_pid;
-	int		i;
+// client
+void	send_to_server(pid_t server_pid, char c);
+void	handle_signal(int sig, siginfo_t *siginfo, void *context);
 
-	if (argc != 3)
-	{
-		ft_printf_basic("Error: wrong format for sending the message.\n");
-		ft_printf_basic("Try ./client server_pid \"message\"\n");
-		return (1);
-	}
-	else
-	{
-		i = -1;
-		server_pid = ft_atoi(argv[1]);
-		while (argv[2][++i])
-			send_to_server(server_pid, argv[2][i]);
-		send_to_server(server_pid, '\n');
-	}
-	return (0);
-}
+#endif

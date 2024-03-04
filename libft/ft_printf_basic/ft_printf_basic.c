@@ -64,14 +64,15 @@ int	ft_printf_basic(const char *format, ...)
 			i++;
 			print_len += printf_check(ptr, format[i++], &error);
 		}
-		if ((format[i] && format[i] != '%') || (format[i] == '%' && !ft_strchr("diucspxX%", format[i + 1])))
+		if ((format[i] && format[i] != '%') || (format[i] == '%'
+				&& !ft_strchr("diucspxX%", format[i + 1])))
 		{
 			error = write(1, &format[i++], 1);
 			print_len++;
 		}
 	}
 	va_end(ptr);
-	return(check_error(error, print_len));
+	return (check_error(error, print_len));
 }
 /*
 int	main(void)

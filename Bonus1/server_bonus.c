@@ -12,40 +12,55 @@
 
 #include "minitalk.h"
 
-void	send_to_server(pid_t server_pid, char c)
+int	add_num(int i)
 {
-	int	i;
+	int	result;
 
-	i = 7;
-	while (i >= 0)
+	result = 1;
+	while (i > 0)
 	{
-		if ((c >> i & 1) == 0)
-			kill(server_pid, SIGUSR1);
-		else if ((c >> i & 1) == 1)
-			kill(server_pid, SIGUSR2);
-		usleep(100);
+		result *= 2;
 		i--;
+	}
+	return (result);
+}
+
+void	handle_signal(int sig, siginfo_t *siginfo, void *context)
+{
+	static int		c = 0;
+	static int		counter = 7;
+	static pid_t	c_pid = 0;
+
+	(void)siginfo;
+	(void)context;
+	if (sig == SIGUSR2)
+		c = c | add_num(counter);
+	counter--;
+	if (counter < 0)
+	{
+		if (!c_pid)
+			c_pid = siginfo->si_pid;
+		ft_printf_basic("%c", c);
+		kill(c_pid, SIGUSR1);
+		c = 0;
+		counter = 7;
+		c_pid = 0;
 	}
 }
 
-int	main(int argc, char *argv[])
+int	main(void)
 {
-	pid_t	server_pid;
-	int		i;
+	struct sigaction	act;
 
-	if (argc != 3)
+	ft_printf_basic("Server's pid is %d\n", getpid());
+	ft_printf_basic("Waiting message...\n");
+	sigemptyset(&act.sa_mask);
+	act.sa_sigaction = handle_signal;
+	act.sa_flags = SA_SIGINFO;
+	sigaction(SIGUSR1, &act, NULL);
+	sigaction(SIGUSR2, &act, NULL);
+	while (1)
 	{
-		ft_printf_basic("Error: wrong format for sending the message.\n");
-		ft_printf_basic("Try ./client server_pid \"message\"\n");
-		return (1);
+		pause();
 	}
-	else
-	{
-		i = -1;
-		server_pid = ft_atoi(argv[1]);
-		while (argv[2][++i])
-			send_to_server(server_pid, argv[2][i]);
-		send_to_server(server_pid, '\n');
-	}
-	return (0);
 }
