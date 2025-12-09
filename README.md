@@ -3,9 +3,9 @@ Minitalk is a small client-server communication project where two programs (a cl
 
 ## Dev features
 - Signal-based communication
-- Bit-level encoding
+- Bit-level encoding and decoding
 - Ascychronous signal handling (No active polling)
 - Transmission pacing using small delays
 
 ## Technical notes
-- The server does not poll or actively check for incoming data. Instead, it simply pauses and relies on UNIX signal mechanics: the operating system monitors events and interrupts the program whenever a signal arrives, triggering the signal handler automatically. This avoids busy loops, uses minimal CPU and lets the server process bits asynchronously as they come in.
+- The server does not poll or actively check for incoming data. Instead, it simply pauses and relies on UNIX signal mechanics: the operating system monitors events and notifys the program whenever a signal arrives, waking it up just long enough to run the signal handler. This avoids busy loops, uses minimal CPU and lets the server process bits asynchronously as they come in.
