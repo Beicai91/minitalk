@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   minitalk_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bcai <marvin@42lausanne.ch>                +#+  +:+       +#+        */
+/*   By: caibei <caibei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:47:13 by bcai              #+#    #+#             */
-/*   Updated: 2024/03/04 15:47:18 by bcai             ###   ########.fr       */
+/*   Updated: 2025/12/12 00:20:39 by caibei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINITALK_BONUS_H
 # define MINITALK_BONUS_H
 
-# include "libft/libft.h"
+# include "../lib/libft/libft.h"
 # include <signal.h>
 # include <stdio.h>
 # include <stdlib.h>

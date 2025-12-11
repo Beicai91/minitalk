@@ -1,29 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bcai <marvin@42lausanne.ch>                +#+  +:+       +#+        */
+/*   By: caibei <caibei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:47:13 by bcai              #+#    #+#             */
-/*   Updated: 2024/03/04 15:47:18 by bcai             ###   ########.fr       */
+/*   Updated: 2025/12/12 00:02:20 by caibei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-
-int	add_num(int i)
-{
-	int	result;
-
-	result = 1;
-	while (i > 0)
-	{
-		result *= 2;
-		i--;
-	}
-	return (result);
-}
 
 void	handle_signal(int sig, siginfo_t *siginfo, void *context)
 {
@@ -34,7 +21,7 @@ void	handle_signal(int sig, siginfo_t *siginfo, void *context)
 	(void)siginfo;
 	(void)context;
 	if (sig == SIGUSR2)
-		c = c | add_num(counter);
+		c = c | (1 << counter);
 	counter--;
 	if (counter < 0)
 	{
